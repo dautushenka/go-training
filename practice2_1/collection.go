@@ -73,6 +73,7 @@ func (c *Collection) Remove(index int) error {
 		}
 	}
 
+	c.length--;
 	return nil;
 }
 
