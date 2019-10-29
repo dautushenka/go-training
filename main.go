@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go-training/practice1"
 	"go-training/practice2"
+	"go-training/practice2_1"
 )
 
 func runPractice1() {
@@ -39,6 +40,28 @@ func runPractice2() {
 	collection.Print();
 }
 
+func runPractice2_1() {
+	collection := practice2_1.Collection{};
+	for i := 0; i < 10; i++ {
+		collection.Add(i);
+	}
+	collection.Print();
+	collection.Get(5);
+	if _, error := collection.Get(5); error != nil {
+		panic("There is no element with required index")
+	}
+	collection.Remove(5);
+	fmt.Println(collection.First());
+	fmt.Println(collection.Last());
+	fmt.Println(collection.Value());
+	fmt.Println(collection.Next());
+	fmt.Println(collection.Next());
+	fmt.Println(collection.Prev());
+	fmt.Println(collection.Length());
+	collection.Print();
+}
+
+
 func main() {
-	runPractice2();
+	runPractice2_1();
 }
