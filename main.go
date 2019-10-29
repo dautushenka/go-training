@@ -5,6 +5,7 @@ import (
 	"go-training/practice1"
 	"go-training/practice2"
 	"go-training/practice2_1"
+	"go-training/practice3"
 )
 
 func runPractice1() {
@@ -63,5 +64,5 @@ func runPractice2_1() {
 
 
 func main() {
-	runPractice2_1();
+	practice3.RunBot();
 }
