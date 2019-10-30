@@ -64,5 +64,5 @@ func runPractice2_1() {
 
 
 func main() {
-	practice3.RunBot();
+	practice3.RunBot2();
 }

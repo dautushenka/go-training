@@ -29,12 +29,8 @@ var exitCommandList = []string{
 	"5", "пока", "bye", "exit", "halt", "shoutdown",
 }
 
-func CreateBot(lang string) {
-
-}
-
 func RunBot() {
-	chooselang();
+	lang = chooselang();
 	runCommunication()
 }
 
@@ -77,7 +73,7 @@ func printOptionList() {
 	}
 }
 
-func chooselang() {
+func chooselang() string {
 	fmt.Println("Hi, please choose default language:");
 	langs := getAvailabeLangs();
 	i := 0; langMap := make([]string, len(langs));
@@ -95,16 +91,16 @@ func chooselang() {
 			fmt.Println("Wrong value, please select right one");
 			continue;
 		}
-		lang = langMap[input - 1];
+		return langMap[input - 1];
 
 		break;
 	}
-	
+	return lang;
 }
 
 func sayHello(lang string) {
 	copy := GetCopy(lang);
-	fmt.Println(copy("hello"))
+	fmt.Println(copy("hello", copy("botName")))
 }
 
 func sayTime(lang string) {
