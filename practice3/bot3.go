@@ -20,8 +20,8 @@ func RunBot3() {
 	botRu := CreateBot("ru")
 
 	var bot IBot
-	selectedLang := chooselang()
-	if selectedLang == "en" {
+	lang = chooselang()
+	if lang == "en" {
 		bot = &botEng
 	} else {
 		bot = &botRu
