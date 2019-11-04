@@ -6,6 +6,7 @@ import (
 	"go-training/practice2"
 	"go-training/practice2_1"
 	"go-training/practice3"
+	"go-training/practice4"
 )
 
 func runPractice1() {
@@ -62,6 +63,19 @@ func runPractice2_1() {
 	collection.Print()
 }
 
-func main() {
+func runPractice3() {
+	//practice3.RunBot()
+	//practice3.RunBot2()
 	practice3.RunBot3()
+}
+
+func runPractice4() {
+	service := practice4.Meteorologist{}
+	//weather := service.DailyForecast("London", 7)
+	weather := service.WeatherForecast("Mahilyow")
+	fmt.Println(weather)
+}
+
+func main() {
+	runPractice4()
 }
