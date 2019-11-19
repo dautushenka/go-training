@@ -7,6 +7,7 @@ import (
 	"go-training/practice2_1"
 	"go-training/practice3"
 	"go-training/practice4"
+	"go-training/practice5"
 )
 
 func runPractice1() {
@@ -76,6 +77,12 @@ func runPractice4() {
 	fmt.Println(weather)
 }
 
+func runPractice5() {
+	match := practice5.NewMatch(70, 80)
+	winner := match.Start()
+	fmt.Println("Winner is " + winner.Name)
+}
+
 func main() {
-	runPractice4()
+	runPractice5()
 }
