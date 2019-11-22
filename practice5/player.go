@@ -10,8 +10,11 @@ type Player struct {
 	Skill int
 }
 
-func (s *Player) Play(ch chan int) {
+func init() {
 	rand.Seed(time.Now().UnixNano())
+}
+
+func (s *Player) Play(ch chan int) {
 	random := rand.Intn(100)
 	for s.Skill >= random {
 		ch <- 1
