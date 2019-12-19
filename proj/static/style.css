@@ -1,0 +1,29 @@
+.main {
+    margin: 0 auto;
+    max-width: 85%;
+    display: flex;
+}
+
+aside {
+    width: 30%;
+}
+.categories ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.categories ul li {
+    height: 80px;
+    padding: 10px 20px;
+    font-size: 3em;
+    list-style: none;
+}
+
+#content article h3 a {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+#content article h3 a:hover {
+    color: #414141;
+}

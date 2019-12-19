@@ -39,7 +39,7 @@ func Start() {
 	globalRouter.Use(securityMiddlewares.Authentication)
 	globalRouter.Use(middleware.ServerErrorHandler)
 	globalRouter.Handle("/api/v1/{_dummy:.*}", apiRouterMux)
-	globalRouter.Handle("/", http.FileServer(http.Dir("proj/static")))
+	globalRouter.Handle("/{_dummy:.*}", http.FileServer(http.Dir("proj/static")))
 
 	if err := http.ListenAndServe(":3000", globalRouter); err != nil {
 		panic(err)
