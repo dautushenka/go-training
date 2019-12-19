@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/mux"
 	"go-training/proj/core/model"
 	"go-training/proj/core/repository"
@@ -93,7 +92,6 @@ func (h *PostHandler) UpdatePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	user := r.Context().Value("User").(*model.User)
-	fmt.Print(user.Id, post.UserId)
 	if user.Id != post.UserId {
 		server.WriteErrorResponse(w, "Access Denied", http.StatusForbidden)
 		return
