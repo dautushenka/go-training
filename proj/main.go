@@ -1,6 +1,7 @@
 package proj
 
 import (
+	"github.com/gorilla/mux"
 	"go-training/proj/core"
 	"go-training/proj/core/repository"
 	"go-training/proj/server/handlers"
@@ -20,23 +21,27 @@ func Start() {
 	securityHandler := handlers.SecurityHandler{usersRepository}
 	postHandler := handlers.PostHandler{postRepository}
 
-	apiRouterMux := http.NewServeMux()
-	apiRouterMux.HandleFunc("/api/auth", securityHandler.Authenticate)
-	apiRouterMux.HandleFunc("/api/posts", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == http.MethodPost {
-			securityMiddlewares.Authorization(postHandler.CreatePost).ServeHTTP(w, r)
-		} else {
-			postHandler.GetList(w, r)
-		}
-	})
+	apiRouterMux := mux.NewRouter().PathPrefix("/api/v1").Subrouter()
+	apiRouterMux.HandleFunc("/auth", securityHandler.Authenticate).Methods(http.MethodPost)
+	apiRouterMux.HandleFunc("/auth", securityHandler.GetUser).Methods(http.MethodGet)
+	apiRouterMux.HandleFunc("/post", postHandler.GetList).Methods(http.MethodGet)
+	apiRouterMux.HandleFunc("/post/{postId:[0-9]+}", postHandler.GetPost).Methods(http.MethodGet)
 
-	globalMux := http.NewServeMux()
-	globalMux.Handle("/api/", apiRouterMux)
-	globalMux.Handle("/", http.FileServer(http.Dir("proj/static")))
+	apiRouterMuxAuth := mux.NewRouter().PathPrefix("/api/v1").Subrouter()
+	apiRouterMuxAuth.Use(securityMiddlewares.Authorization)
+	apiRouterMuxAuth.HandleFunc("/post/{postId:[0-9]+}", postHandler.UpdatePost).Methods(http.MethodPut)
+	apiRouterMuxAuth.HandleFunc("/post/{postId:[0-9]+}", postHandler.DeletePost).Methods(http.MethodDelete)
+	apiRouterMuxAuth.HandleFunc("/post", postHandler.CreatePost).Methods(http.MethodPost)
 
-	globalHandler := middleware.ServerErrorHandler(securityMiddlewares.Authentication(globalMux))
+	apiRouterMux.Handle("/post{_dummy:.*}", apiRouterMuxAuth)
 
-	if err := http.ListenAndServe(":3000", globalHandler); err != nil {
+	globalRouter := mux.NewRouter()
+	globalRouter.Use(securityMiddlewares.Authentication)
+	globalRouter.Use(middleware.ServerErrorHandler)
+	globalRouter.Handle("/api/v1/{_dummy:.*}", apiRouterMux)
+	globalRouter.Handle("/", http.FileServer(http.Dir("proj/static")))
+
+	if err := http.ListenAndServe(":3000", globalRouter); err != nil {
 		panic(err)
 	}
 

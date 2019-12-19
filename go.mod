@@ -7,6 +7,7 @@ require (
 	github.com/corpix/uarand v0.1.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fsnotify/fsnotify v1.4.7 // indirect
+	github.com/gorilla/mux v1.7.3
 	github.com/icrowley/fake v0.0.0-20180203215853-4178557ae428
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/kr/pty v1.1.8 // indirect

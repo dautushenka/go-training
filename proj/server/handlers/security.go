@@ -18,29 +18,17 @@ type authenticateResponse struct {
 }
 
 func (h *SecurityHandler) Authenticate(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		if user := r.Context().Value("User"); user != nil {
-			response := authenticateResponse{
-				User: user.(*model.User),
-			}
-			server.WriteJSONResponse(w, response, 200)
-			return
-		}
-		server.WriteResponseError(w, "Unauthorized", 401)
-		return
-	}
-
 	login := r.FormValue("login")
 	password := r.FormValue("password")
 
 	if login == "" || password == "" {
-		server.WriteResponseError(w, "Login or password is empty", 400)
+		server.WriteErrorResponse(w, "Login or password is empty", 400)
 		return
 	}
 
 	user, err := h.UsersRepository.GetUserByLogin(login)
 	if err != nil || !security.IsPasswordValid(password, user.PasswordHash) {
-		server.WriteResponseError(w, "Login/Password is invalid", 400)
+		server.WriteErrorResponse(w, "Login/Password is invalid", 400)
 		return
 	}
 
@@ -50,4 +38,15 @@ func (h *SecurityHandler) Authenticate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	server.WriteJSONResponse(w, response, 200)
+}
+
+func (h *SecurityHandler) GetUser(w http.ResponseWriter, r *http.Request) {
+	if user := r.Context().Value("User"); user != nil {
+		response := authenticateResponse{
+			User: user.(*model.User),
+		}
+		server.WriteJSONResponse(w, response, 200)
+		return
+	}
+	server.WriteErrorResponse(w, "Unauthorized", 401)
 }

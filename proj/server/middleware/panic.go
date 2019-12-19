@@ -12,7 +12,7 @@ func ServerErrorHandler(next http.Handler) http.Handler {
 			if r := recover(); r != nil {
 				// Add logs
 				fmt.Println(r)
-				server.WriteResponseError(w, "Something went wrong", 500)
+				server.WriteErrorResponse(w, "Something went wrong", 500)
 			}
 		}()
 

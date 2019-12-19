@@ -2,7 +2,6 @@ package security
 
 import (
 	"errors"
-	"fmt"
 	jwt "github.com/dgrijalva/jwt-go"
 	"go-training/proj/core/model"
 	"strconv"
@@ -37,7 +36,6 @@ func ValidateToken(tokenStr string) (int32, error) {
 
 	if token.Valid {
 		claims := token.Claims.(*jwt.StandardClaims)
-		fmt.Println(claims.Issuer)
 		id, _ := strconv.ParseInt(claims.Id, 10, 32)
 		return int32(id), nil
 	} else if ve, ok := err.(*jwt.ValidationError); ok {

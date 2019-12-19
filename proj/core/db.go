@@ -11,14 +11,14 @@ import (
 )
 
 func InitializeDB() *sql.DB {
-	db, err := sql.Open("sqlite3", "file:data.db?cache=shared&mode=memory")
-	//db, err := sql.Open("sqlite3", "file:data.db?cache=shared")
+	//db, err := sql.Open("sqlite3", "file:data.db?cache=shared&mode=memory")
+	db, err := sql.Open("sqlite3", "file:data.db?cache=shared")
 	if err != nil {
 		panic(err)
 	}
 
-	createSchema(db)
-	applyFixtures(db)
+	//createSchema(db)
+	//applyFixtures(db)
 
 	return db
 }
@@ -46,6 +46,7 @@ Name TEXT NOT NULL
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS posts (
 Id INTEGER PRIMARY KEY,
 CategoryId INTEGER,
+UserId INTEGER,
 Title TEXT NOT NULL,
 Body TEXT NOT NULL,
 Date TEXT NOT NULL,
@@ -113,9 +114,10 @@ func applyFixtures(db *sql.DB) {
 			postId = Id
 		}
 		_, err := db.Exec(
-			"INSERT INTO posts (Id, CategoryId, Title, Body, Date) VALUES ($1, $2, $3, $4, $5)",
+			"INSERT INTO posts (Id, CategoryId, UserId, Title, Body, Date) VALUES ($1, $2, $3, $4, $5, $6)",
 			postId,
 			CategoryId,
+			rand.Intn(2)+1,
 			Title,
 			Body,
 			Date,
