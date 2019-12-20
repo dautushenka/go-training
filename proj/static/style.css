@@ -40,7 +40,7 @@
 .categories ul li {
     height: 45px;
     padding: 10px 20px;
-    font-size: 3em;
+    font-size: 2em;
     list-style: none;
 }
 .categories ul li.selected {

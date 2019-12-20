@@ -3,6 +3,7 @@ module go-training
 go 1.13
 
 require (
+	github.com/DATA-DOG/go-sqlmock v1.3.3
 	github.com/cespare/reflex v0.2.0 // indirect
 	github.com/corpix/uarand v0.1.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -13,5 +14,7 @@ require (
 	github.com/kr/pty v1.1.8 // indirect
 	github.com/mattn/go-sqlite3 v2.0.2+incompatible
 	github.com/ogier/pflag v0.0.1 // indirect
+	github.com/smartystreets/goconvey v1.6.4
+	github.com/stretchr/testify v1.3.0
 	golang.org/x/sys v0.0.0-20191210023423-ac6580df4449 // indirect
 )
