@@ -15,7 +15,7 @@ func GetToken(user *model.User) string {
 	claims := &jwt.StandardClaims{
 		Id:        strconv.Itoa(int(user.Id)),
 		IssuedAt:  time.Now().Unix(),
-		Issuer:    "Go-Proj",
+		Issuer:    "Final-Proj",
 		ExpiresAt: time.Now().Unix() + 7*24*3600,
 	}
 

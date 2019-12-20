@@ -1,6 +1,7 @@
 'use strict';
 
-function ArticleTitle({title, id}) {
+function ArticleTitle(post) {
+    const  {title, id} = post;
     return React.createElement(
         'h3',
         null,
@@ -9,7 +10,7 @@ function ArticleTitle({title, id}) {
             {
                 onClick: (e) => {
                     e.preventDefault();
-                    console.log('click')
+                    window.history.pushState({post}, title, `/post/${id}`);
                 },
                 href: `/post/${id}`
             }
@@ -35,12 +36,26 @@ class Articles extends React.PureComponent {
     }
 
     componentDidMount() {
-        fetch("/api/v1/post").then(response => {
+        this.fetchPosts()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.category !== this.props.category) {
+            this.fetchPosts()
+        }
+    }
+
+    fetchPosts = () => {
+        let URL = "/api/v1/post";
+        if (this.props.category) {
+            URL += "?category=" + encodeURIComponent(this.props.category);
+        }
+        fetch(URL).then(response => {
             response.json().then(posts => {
                 this.setState({posts})
             })
         })
-    }
+    };
 
     render() {
         return this.state.posts.map(post => {

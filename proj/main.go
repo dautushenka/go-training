@@ -14,17 +14,18 @@ func Start() {
 	defer db.Close()
 
 	usersRepository := repository.CreateUserRepository(db)
-	postRepository := repository.CreatePostRepository(db)
 
 	securityMiddlewares := middleware.Security{usersRepository}
 
-	securityHandler := handlers.SecurityHandler{usersRepository}
-	postHandler := handlers.PostHandler{postRepository}
+	securityHandler := handlers.CreateSecurityHandler(usersRepository)
+	postHandler := handlers.CreatePostHandler(repository.CreatePostRepository(db))
+	categoryHandler := handlers.CreateCategoryHandler(repository.CreateCategoryRepository(db))
 
 	apiRouterMux := mux.NewRouter().PathPrefix("/api/v1").Subrouter()
 	apiRouterMux.HandleFunc("/auth", securityHandler.Authenticate).Methods(http.MethodPost)
 	apiRouterMux.HandleFunc("/auth", securityHandler.GetUser).Methods(http.MethodGet)
 	apiRouterMux.HandleFunc("/post", postHandler.GetList).Methods(http.MethodGet)
+	apiRouterMux.HandleFunc("/category", categoryHandler.GetList).Methods(http.MethodGet)
 	apiRouterMux.HandleFunc("/post/{postId:[0-9]+}", postHandler.GetPost).Methods(http.MethodGet)
 
 	apiRouterMuxAuth := mux.NewRouter().PathPrefix("/api/v1").Subrouter()

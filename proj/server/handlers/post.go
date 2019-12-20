@@ -15,6 +15,10 @@ type PostHandler struct {
 	PostRepository repository.PostRepository
 }
 
+func CreatePostHandler(repository repository.PostRepository) *PostHandler {
+	return &PostHandler{repository}
+}
+
 func (h *PostHandler) GetList(w http.ResponseWriter, r *http.Request) {
 	categoryId, _ := strconv.ParseInt(r.URL.Query().Get("category"), 10, 32)
 	posts, err := h.PostRepository.GetPostList(int32(categoryId))

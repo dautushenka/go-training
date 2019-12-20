@@ -3,7 +3,7 @@ package model
 type Post struct {
 	Id         int32  `json:"id"`
 	CategoryId int32  `json:"category"`
-	UserId     int32  `json:"-"`
+	UserId     int32  `json:"user_id"`
 	Title      string `json:"title"`
 	Body       string `json:"body"`
 	Date       string `json:"date"`

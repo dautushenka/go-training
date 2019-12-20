@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Final Project</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/article.js"></script>
+    <script src="/js/category.js"></script>
+    <script src="/js/post.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/entry.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div class="main">
-    <aside>
-        <div class="categories" id="categories">
+<div class="container">
+    <div class="header">
+        <ul id="header-list">
+        </ul>
+        <div class="title"><a href="/" >Final Project</a></div>
+    </div>
+    <div class="main">
+        <aside>
+            <div class="categories" id="categories">
+
+            </div>
+        </aside>
+        <div class="content" id="content">
 
         </div>
-    </aside>
-    <div class="content" id="content">
-
     </div>
 </div>
-
-<div id="root"></div>
-<script src="/js/article.js"></script>
-<script src="/js/entry.js"></script>
 </body>
 </html>

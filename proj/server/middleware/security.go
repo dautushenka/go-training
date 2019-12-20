@@ -15,15 +15,18 @@ type Security struct {
 
 func (s *Security) Authentication(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		bearerToken := r.Header.Get("Authorization")
+		bearerToken := r.Header.Get("Authentication")
 		if bearerToken != "" {
-			token := strings.Split(bearerToken, "Bearer ")[1]
-			userId, err := security.ValidateToken(token)
-			if err == nil {
-				user, err := s.UserRepository.GetUserById(userId)
+			tokenSlice := strings.Split(bearerToken, "Bearer ")
+			if len(tokenSlice) > 1 {
+				token := tokenSlice[1]
+				userId, err := security.ValidateToken(token)
 				if err == nil {
-					ctx := context.WithValue(r.Context(), "User", user)
-					r = r.WithContext(ctx)
+					user, err := s.UserRepository.GetUserById(userId)
+					if err == nil {
+						ctx := context.WithValue(r.Context(), "User", user)
+						r = r.WithContext(ctx)
+					}
 				}
 			}
 		}
