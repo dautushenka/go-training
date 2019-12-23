@@ -8,6 +8,7 @@ import (
 	"go-training/practice3"
 	"go-training/practice4"
 	"go-training/practice5"
+	"go-training/proj"
 )
 
 func runPractice1() {
@@ -83,6 +84,10 @@ func runPractice5() {
 	fmt.Println("Winner is " + winner.Name)
 }
 
+func runFinalProject() {
+	proj.Start()
+}
+
 func main() {
-	runPractice5()
+	runFinalProject()
 }

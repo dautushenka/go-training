@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "d291acef-ccab-4427-ab4c-5689ddb9fc97",
+		"name": "Go-proj",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "user",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/auth",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET UserInfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/auth",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get PostList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/post?category=2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"post"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post By ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/post/4",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post By ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzcyMDMxMTIsImp0aSI6IjEiLCJpYXQiOjE1NzY1OTgzMTIsImlzcyI6IkdvLVByb2oifQ.gy_qeFmoArnDaRb84G-wGGBw0SMILK2vQlogKNK2r2g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 118,\n    \"category\": 2,\n    \"title\": \"Charlize Theron opens up about her mum killing her dad\",\n    \"body\": \"The actress says she's \\\"not ashamed\\\" to discuss the violence she experienced in her family.\",\n    \"date\": \"Thu, 19 Dec 2019 20:43:12 +03\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/post/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Post By ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzcyMDMxMTIsImp0aSI6IjEiLCJpYXQiOjE1NzY1OTgzMTIsImlzcyI6IkdvLVByb2oifQ.gy_qeFmoArnDaRb84G-wGGBw0SMILK2vQlogKNK2r2g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 118,\n    \"category\": 2,\n    \"title\": \"Charlize Theron opens up about her mum killing her dad\",\n    \"body\": \"The actress says she's \\\"not ashamed\\\" to discuss the violence she experienced in her family.\",\n    \"date\": \"Thu, 19 Dec 2019 20:43:12 +03\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/post/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"post",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzcyMDMxMTIsImp0aSI6IjEiLCJpYXQiOjE1NzY1OTgzMTIsImlzcyI6IkdvLVByb2oifQ.gy_qeFmoArnDaRb84G-wGGBw0SMILK2vQlogKNK2r2g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": 1,\n    \"title\": \"Charlize Theron opens up about her mum killing her dad\",\n    \"body\": \"The actress says she's \\\"not ashamed\\\" to discuss the violence she experienced in her family.\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/post",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9818f3db-671c-45ac-8a48-8ea9029ab31b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bb6f4d11-c9c5-40c6-8f3f-2188799e23b6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "e09bba7d-4cfd-48c3-8e67-8e5e0d700f42",
+			"key": "host",
+			"value": "localhost:3000",
+			"type": "string"
+		},
+		{
+			"id": "abc21e5c-b03d-43e4-a37b-1f7c275d3672",
+			"key": "Token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzcyMDMxMTIsImp0aSI6IjEiLCJpYXQiOjE1NzY1OTgzMTIsImlzcyI6IkdvLVByb2oifQ.gy_qeFmoArnDaRb84G-wGGBw0SMILK2vQlogKNK2r2g",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

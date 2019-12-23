@@ -1,0 +1,94 @@
+.container {
+    margin: 0 auto;
+    max-width: 85%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.container .header {
+    padding-left: 20px;
+}
+.container .header ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+.container .header ul li {
+    padding: 5px 15px;
+    display: flex;
+}
+.container .header ul li a.logout{
+    margin-left: 10px;
+}
+.container .header .title {
+    margin: 15px 0 15px;
+    font-size: 3em;
+}
+.container .header .title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* categories */
+.categories ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.categories ul li {
+    height: 45px;
+    padding: 10px 20px;
+    font-size: 2em;
+    list-style: none;
+}
+.categories ul li.selected {
+    background-color: gainsboro;
+}
+.categories ul li:hover {
+    background-color: gainsboro;
+}
+
+.categories ul li a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Main content */
+.main {
+    display: flex;
+}
+aside {
+    width: 30%;
+}
+#content {
+    margin: 0 15px;
+}
+#content article h3 a {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+#content article h3 a:hover {
+    color: #414141;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+}
+.login-form form input {
+    margin-top: 10px;
+}
+
+.postActions {
+    display: flex;
+}
+.postActions a {
+    margin-left: 15px;
+}
